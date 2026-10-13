@@ -1,0 +1,121 @@
+station_id,nom,commune,capacite,latitude,longitude,date_mise_en_service
+S001,Lille - Gare,Lille,15,50.59932,3.21953,2023-08-07
+S002,Lille - Mairie,Lille,30,50.58226,3.02877,2021-10-28
+S003,Lille - Place de la Republique,Lille,35,50.68473,3.24356,2021-08-31
+S004,Lille - Grand Place,Lille,20,50.55077,3.08322,2020-07-29
+S005,Lille - Universite,Lille,30,50.67438,3.22059,2020-10-09
+S006,Lille - Stade,Lille,30,50.70354,3.0285,2019-07-18
+S007,Lille - Piscine,Lille,25,50.58436,3.15478,2019-05-08
+S008,Lille - Theatre,Lille,40,50.60644,3.06108,2021-10-02
+S009,Lille - Marche,Lille,40,50.63675,2.95457,2024-03-06
+S010,Lille - Parc,Lille,25,50.7205,3.09836,2022-03-28
+S011,Lille - Eglise Saint-Pierre,Lille,40,50.6695,3.19952,2021-10-31
+S012,Lille - Rue Nationale,Lille,15,50.62753,3.10598,2021-08-05
+S013,Lille - Boulevard de la Liberte,Lille,20,50.60204,3.05149,2021-03-03
+S014,Lille - Metro,Lille,25,50.70899,3.16971,2023-07-08
+S015,Lille - Centre commercial,Lille,35,50.59077,3.05967,2024-11-02
+S016,Lille - Hopital,Lille,35,50.62518,3.00849,2022-02-21
+S017,Lille - Mediatheque,Lille,20,50.7111,3.05154,2022-07-26
+S018,Lille - Palais de Justice,Lille,25,50.56024,3.08656,2023-01-07
+S019,Lille - Zone des Pres,Lille,15,50.67811,3.19929,2024-05-01
+S020,Lille - Quartier des Bois,Lille,25,50.7251,3.18486,2024-05-23
+S021,Lille - Rue de la Paix,Lille,40,50.62326,3.23871,2023-09-16
+S022,Lille - Avenue Foch,Lille,30,50.64586,3.12137,2020-10-24
+S023,Lille - Pont de Flandres,Lille,40,50.56568,3.14217,2024-01-14
+S024,Lille - Citadelle,Lille,35,50.6101,3.10607,2022-01-14
+S025,Lille - Eurotechnologies,Lille,25,50.69188,3.19735,2023-05-11
+S026,Lille - Campus,Lille,25,50.70529,3.03159,2020-12-28
+S027,Lille - Beffroi,Lille,20,50.6407,3.10886,2020-12-17
+S028,Lille - Canal,Lille,15,50.70784,3.11732,2021-05-04
+S029,Lille - Vieux-Lille,Lille,25,50.71017,3.22791,2022-12-09
+S030,Lille - Halles,Lille,30,50.65428,3.07645,2021-12-23
+S031,Lille - Gare 2,Lille,20,50.6174,3.24417,2020-01-05
+S032,Lille - Mairie 2,Lille,25,50.70749,3.08361,2019-06-28
+S033,Lille - Place de la Republique 2,Lille,30,50.56656,2.97066,2019-03-09
+S034,Lille - Grand Place 2,Lille,20,50.58745,3.14591,2021-10-01
+S035,Lille - Universite 2,Lille,35,50.6915,2.95353,2021-03-30
+S036,Lille - Stade 2,Lille,25,50.68794,3.19825,2022-01-30
+S037,Lille - Piscine 2,Lille,20,50.72049,3.18374,2023-10-31
+S038,Lille - Theatre 2,Lille,20,50.69095,3.02323,2020-10-01
+S039,Lille - Marche 2,Lille,40,50.60612,3.01982,2019-05-02
+S040,Lille - Parc 2,Lille,15,50.56138,3.02157,2021-06-17
+S041,Lille - Eglise Saint-Pierre 2,Lille,25,50.55476,3.01587,2021-01-24
+S042,Lille - Rue Nationale 2,Lille,20,50.71583,3.06293,2019-04-28
+S043,Lille - Boulevard de la Liberte 2,Lille,20,50.56095,3.105,2021-07-25
+S044,Lille - Metro 2,Lille,25,50.55083,3.1263,2024-12-05
+S045,Lille - Centre commercial 2,Lille,20,50.56904,3.21168,2021-11-09
+S046,Lille - Hopital 2,Lille,35,50.65064,3.21539,2019-06-15
+S047,Roubaix - Gare,Roubaix,25,50.61389,3.09569,2024-04-23
+S048,Roubaix - Mairie,Roubaix,35,50.61434,3.18683,2019-09-23
+S049,Roubaix - Place de la Republique,Roubaix,35,50.64875,3.24621,2019-08-28
+S050,Roubaix - Grand Place,Roubaix,25,50.61233,3.08405,2020-07-02
+S051,Roubaix - Universite,Roubaix,15,50.60894,3.14921,2020-05-11
+S052,Roubaix - Stade,Roubaix,20,50.5594,2.98326,2024-09-12
+S053,Roubaix - Piscine,Roubaix,30,50.70098,2.99091,2020-09-01
+S054,Roubaix - Theatre,Roubaix,20,50.55717,2.99931,2021-01-06
+S055,Roubaix - Marche,Roubaix,30,50.69516,3.1276,2022-11-29
+S056,Roubaix - Parc,Roubaix,35,50.60995,3.21534,2021-04-02
+S057,Roubaix - Eglise Saint-Pierre,Roubaix,20,50.60775,3.19607,2019-12-12
+S058,Roubaix - Rue Nationale,Roubaix,30,50.62481,3.06612,2019-11-27
+S059,Roubaix - Boulevard de la Liberte,Roubaix,15,50.57095,3.21131,2019-07-13
+S060,Roubaix - Metro,Roubaix,35,50.67433,3.21929,2021-04-09
+S061,Roubaix - Centre commercial,Roubaix,40,50.67325,2.98123,2023-07-27
+S062,Roubaix - Hopital,Roubaix,15,50.71577,3.05291,2020-08-25
+S063,Tourcoing - Gare,Tourcoing,35,50.67131,3.08973,2022-06-20
+S064,Tourcoing - Mairie,Tourcoing,15,50.57932,3.2206,2019-07-08
+S065,Tourcoing - Place de la Republique,Tourcoing,35,50.69584,3.05531,2024-04-14
+S066,Tourcoing - Grand Place,Tourcoing,30,50.6069,2.97853,2023-02-13
+S067,Tourcoing - Universite,Tourcoing,25,50.59755,3.19058,2019-04-04
+S068,Tourcoing - Stade,Tourcoing,35,50.68687,2.95274,2021-10-01
+S069,Tourcoing - Piscine,Tourcoing,40,50.66074,3.08361,2019-03-04
+S070,Tourcoing - Theatre,Tourcoing,35,50.68388,2.96835,2022-03-05
+S071,Tourcoing - Marche,Tourcoing,15,50.59854,3.14129,2022-03-14
+S072,Tourcoing - Parc,Tourcoing,20,50.59529,3.18866,2024-09-10
+S073,Tourcoing - Eglise Saint-Pierre,Tourcoing,25,50.55384,3.03587,2021-11-07
+S074,Tourcoing - Rue Nationale,Tourcoing,40,50.62164,3.194,2021-02-08
+S075,Tourcoing - Boulevard de la Liberte,Tourcoing,20,50.64758,3.09484,2022-06-27
+S076,Tourcoing - Metro,Tourcoing,35,50.58962,3.08943,2019-09-10
+S077,Villeneuve d'Ascq - Gare,Villeneuve d'Ascq,25,50.58731,3.13634,2021-12-17
+S078,Villeneuve d'Ascq - Mairie,Villeneuve d'Ascq,20,50.55279,3.13333,2023-02-19
+S079,Villeneuve d'Ascq - Place de la Republique,Villeneuve d'Ascq,15,50.59575,3.22034,2021-02-23
+S080,Villeneuve d'Ascq - Grand Place,Villeneuve d'Ascq,30,50.72699,2.97136,2020-06-11
+S081,Villeneuve d'Ascq - Universite,Villeneuve d'Ascq,25,50.63234,3.09253,2024-06-04
+S082,Villeneuve d'Ascq - Stade,Villeneuve d'Ascq,25,50.70964,3.08387,2024-08-27
+S083,Villeneuve d'Ascq - Piscine,Villeneuve d'Ascq,20,50.6616,2.95502,2022-03-13
+S084,Villeneuve d'Ascq - Theatre,Villeneuve d'Ascq,20,50.60641,2.97561,2024-09-23
+S085,Villeneuve d'Ascq - Marche,Villeneuve d'Ascq,40,50.60287,3.04913,2021-11-15
+S086,Villeneuve d'Ascq - Parc,Villeneuve d'Ascq,20,50.56009,2.97708,2019-09-17
+S087,Villeneuve d'Ascq - Eglise Saint-Pierre,Villeneuve d'Ascq,25,50.63356,3.19498,2020-12-14
+S088,Villeneuve d'Ascq - Rue Nationale,Villeneuve d'Ascq,20,50.62635,3.19496,2022-10-13
+S089,Villeneuve d'Ascq - Boulevard de la Liberte,Villeneuve d'Ascq,25,50.5645,3.05609,2024-12-03
+S090,Villeneuve d'Ascq - Metro,Villeneuve d'Ascq,40,50.66862,3.02607,2022-08-01
+S091,Marcq-en-Baroeul - Gare,Marcq-en-Baroeul,40,50.6316,3.1112,2022-07-10
+S092,Marcq-en-Baroeul - Mairie,Marcq-en-Baroeul,20,50.69693,2.9882,2021-05-07
+S093,Marcq-en-Baroeul - Place de la Republique,Marcq-en-Baroeul,20,50.60592,3.19115,2022-11-20
+S094,Marcq-en-Baroeul - Grand Place,Marcq-en-Baroeul,25,50.64594,3.20173,2024-04-14
+S095,Marcq-en-Baroeul - Universite,Marcq-en-Baroeul,25,50.65605,2.99498,2019-05-03
+S096,Marcq-en-Baroeul - Stade,Marcq-en-Baroeul,25,50.70168,3.1803,2021-12-15
+S097,Marcq-en-Baroeul - Piscine,Marcq-en-Baroeul,30,50.57494,3.03074,2021-02-24
+S098,Marcq-en-Baroeul - Theatre,Marcq-en-Baroeul,20,50.56554,3.23459,2024-04-20
+S099,Lambersart - Gare,Lambersart,35,50.6305,3.00373,2021-06-02
+S100,Lambersart - Mairie,Lambersart,20,50.6209,3.08823,2021-07-27
+S101,Lambersart - Place de la Republique,Lambersart,25,50.57011,3.24215,2021-06-22
+S102,Lambersart - Grand Place,Lambersart,25,50.68434,3.16575,2023-12-24
+S103,Lambersart - Universite,Lambersart,35,50.66558,2.96482,2019-06-09
+S104,Lambersart - Stade,Lambersart,20,50.69004,3.2192,2021-05-13
+S105,Wattrelos - Gare,Wattrelos,20,50.67142,2.98371,2022-09-29
+S106,Wattrelos - Mairie,Wattrelos,20,50.63944,3.23241,2020-11-17
+S107,Wattrelos - Place de la Republique,Wattrelos,25,50.6702,2.9891,2022-01-22
+S108,Wattrelos - Grand Place,Wattrelos,25,50.69677,2.97003,2024-08-18
+S109,Wattrelos - Universite,Wattrelos,15,50.57135,3.07258,2022-12-06
+S110,Wattrelos - Stade,Wattrelos,20,50.58318,3.17183,2019-12-08
+S111,Croix - Gare,Croix,20,50.67917,3.13379,2019-07-05
+S112,Croix - Mairie,Croix,25,50.66264,2.99292,2020-07-05
+S113,Croix - Place de la Republique,Croix,25,50.68645,3.15963,2023-01-07
+S114,Croix - Grand Place,Croix,25,50.65294,3.11314,2024-01-29
+S115,Croix - Universite,Croix,25,50.67246,2.97129,2019-11-20
+S116,Mons-en-Baroeul - Gare,Mons-en-Baroeul,40,50.58684,3.09709,2020-06-19
+S117,Mons-en-Baroeul - Mairie,Mons-en-Baroeul,25,50.56312,3.01666,2022-12-17
+S118,Mons-en-Baroeul - Place de la Republique,Mons-en-Baroeul,25,50.65367,3.02865,2022-10-20
+S119,Mons-en-Baroeul - Grand Place,Mons-en-Baroeul,20,50.7092,3.04763,2021-02-06
+S120,Mons-en-Baroeul - Universite,Mons-en-Baroeul,35,50.71186,3.18191,2025-02-26

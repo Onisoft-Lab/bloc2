@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: veloville-db
+    environment:
+      POSTGRES_USER: veloville
+      POSTGRES_PASSWORD: veloville
+      POSTGRES_DB: veloville
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U veloville -d veloville"]
+      interval: 2s
+      timeout: 5s
+      retries: 30

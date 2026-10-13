@@ -1,0 +1,56 @@
+# Sujet, ressources et brouillons locaux
+temp/
+
+# Environnements et secrets
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+env/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+pip-wheel-metadata/
+
+# Tests et couverture
+.pytest_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.tox/
+.nox/
+
+# Outils
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Éditeurs et système
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Sauvegardes et journaux
+sauvegardes/
+*.dump
+*.sql.gz
+*.log
+journal_rejets*.csv
+journal_rejets*.log
+
+# Streamlit
+.streamlit/secrets.toml

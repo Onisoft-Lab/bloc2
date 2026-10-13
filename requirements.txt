@@ -1,0 +1,25 @@
+# Dépendances du projet VéloVille. Versions épinglées.
+
+# API
+fastapi==0.143.0
+uvicorn==0.54.0
+sqlalchemy==2.1.4
+psycopg[binary]==3.3.6
+pydantic==2.14.1
+python-dotenv==1.2.4
+
+# Sécurité
+pyjwt==2.15.1
+bcrypt==5.0.0
+
+# Données
+pandas==3.0.6
+
+# Front
+streamlit==1.65.0
+requests==2.34.2
+
+# Tests
+pytest==9.1.1
+pytest-cov==7.1.0
+httpx==0.28.1
