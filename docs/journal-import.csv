@@ -1,0 +1,191 @@
+fichier,identifiant,colonne,valeur,motif,decision
+trajets.csv,T480030,station_arrivee,S999,Station d'arrivée inconnue,rejet
+trajets.csv,T480034,station_arrivee,S999,Station d'arrivée inconnue,rejet
+trajets.csv,T480073,trajet_id,T480073,Ligne identique à une ligne déjà traitée,doublon
+trajets.csv,T480078,trajet_id,T480078,Ligne identique à une ligne déjà traitée,doublon
+trajets.csv,T480086,velo_id,v1281,Casse de l'identifiant vélo normalisée,normalisation
+trajets.csv,T480152,station_arrivee,S999,Station d'arrivée inconnue,rejet
+trajets.csv,T480235,station_arrivee,S999,Station d'arrivée inconnue,rejet
+trajets.csv,T480288,trajet_id,T480288,Ligne identique à une ligne déjà traitée,doublon
+trajets.csv,T480293,trajet_id,T480293,Ligne identique à une ligne déjà traitée,doublon
+trajets.csv,T480379,depart_horodatage,25/08/2026 17:08,Format d'horodatage normalisé,normalisation
+trajets.csv,T480596,duree_secondes,-120,Durée nulle ou négative,rejet
+trajets.csv,T480596,trajet_id,T480596,Ligne identique à une ligne déjà traitée,doublon
+trajets.csv,T480605,velo_id,v0685,Casse de l'identifiant vélo normalisée,normalisation
+trajets.csv,T480712,duree_secondes,-45,Durée nulle ou négative,rejet
+trajets.csv,T480847,trajet_id,T480847,Ligne identique à une ligne déjà traitée,doublon
+trajets.csv,T480858,station_arrivee,S999,Station d'arrivée inconnue,rejet
+trajets.csv,T480899,duree_secondes,-45,Durée nulle ou négative,rejet
+trajets.csv,T480924,duree_secondes,-120,Durée nulle ou négative,rejet
+trajets.csv,T480929,velo_id,v0800,Casse de l'identifiant vélo normalisée,normalisation
+trajets.csv,T480945,trajet_id,T480945,Ligne identique à une ligne déjà traitée,doublon
+trajets.csv,T481067,duree_secondes,0,Durée nulle ou négative,rejet
+trajets.csv,T481074,duree_secondes,0,Durée nulle ou négative,rejet
+trajets.csv,T481274,duree_secondes,0,Durée nulle ou négative,rejet
+trajets.csv,T481359,velo_id,v0959,Casse de l'identifiant vélo normalisée,normalisation
+trajets.csv,T481464,station_arrivee,S999,Station d'arrivée inconnue,rejet
+trajets.csv,T481592,depart_horodatage,29/08/2026 12:59,Format d'horodatage normalisé,normalisation
+trajets.csv,T481625,trajet_id,T481625,Ligne identique à une ligne déjà traitée,doublon
+trajets.csv,T481636,trajet_id,T481636,Ligne identique à une ligne déjà traitée,doublon
+trajets.csv,T481685,velo_id,v1788,Casse de l'identifiant vélo normalisée,normalisation
+trajets.csv,T481688,duree_secondes,-120,Durée nulle ou négative,rejet
+trajets.csv,T481717,station_arrivee,S999,Station d'arrivée inconnue,rejet
+trajets.csv,T481776,trajet_id,T481776,Ligne identique à une ligne déjà traitée,doublon
+trajets.csv,T481834,trajet_id,T481834,Ligne identique à une ligne déjà traitée,doublon
+trajets.csv,T481846,duree_secondes,-45,Durée nulle ou négative,rejet
+trajets.csv,T481885,depart_horodatage,30/08/2026 07:22,Format d'horodatage normalisé,normalisation
+trajets.csv,T481907,velo_id,v0936,Casse de l'identifiant vélo normalisée,normalisation
+trajets.csv,T481927,trajet_id,T481927,Ligne identique à une ligne déjà traitée,doublon
+trajets.csv,T481958,depart_horodatage,30/08/2026 15:22,Format d'horodatage normalisé,normalisation
+incidents.csv,I2026-0001,statut,En cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0003,statut,RESOLU,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0004,statut,RESOLU,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0006,statut,RESOLU,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0007,statut,Ouvert,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0008,statut,En cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0009,statut,RESOLU,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0011,technicien,,Technicien absent pour un incident pris en charge,avertissement
+incidents.csv,I2026-0012,statut,En cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0014,statut,Ouvert,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0015,statut,Resolu,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0016,statut,Resolu,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0017,statut,RESOLU,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0018,statut,En cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0018,technicien,,Technicien absent pour un incident pris en charge,avertissement
+incidents.csv,I2026-0020,statut,Ouvert,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0021,statut,Ouvert,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0022,statut,En cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0025,statut,En cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0026,statut,Ouvert,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0027,statut,RESOLU,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0028,date_resolution,2026-07-22 06:00,Date de résolution antérieure au signalement,rejet
+incidents.csv,I2026-0029,statut,Ouvert,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0030,statut,En cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0031,statut,en cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0031,technicien,,Technicien absent pour un incident pris en charge,avertissement
+incidents.csv,I2026-0032,statut,En cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0032,technicien,,Technicien absent pour un incident pris en charge,avertissement
+incidents.csv,I2026-0033,statut,Ouvert,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0035,statut,en cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0035,technicien,,Technicien absent pour un incident pris en charge,avertissement
+incidents.csv,I2026-0036,statut,En cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0037,statut,Ouvert,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0039,statut,Resolu,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0039,technicien,,Technicien absent pour un incident pris en charge,avertissement
+incidents.csv,I2026-0040,statut,Resolu,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0043,statut,RESOLU,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0044,statut,En cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0046,statut,RESOLU,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0047,statut,RESOLU,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0047,technicien,,Technicien absent pour un incident pris en charge,avertissement
+incidents.csv,I2026-0048,statut,en cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0048,technicien,,Technicien absent pour un incident pris en charge,avertissement
+incidents.csv,I2026-0049,statut,en cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0050,statut,En cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0050,technicien,,Technicien absent pour un incident pris en charge,avertissement
+incidents.csv,I2026-0052,statut,Ouvert,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0053,statut,RESOLU,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0053,technicien,,Technicien absent pour un incident pris en charge,avertissement
+incidents.csv,I2026-0054,technicien,,Technicien absent pour un incident pris en charge,avertissement
+incidents.csv,I2026-0055,statut,en cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0056,technicien,,Technicien absent pour un incident pris en charge,avertissement
+incidents.csv,I2026-0059,statut,RESOLU,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0060,statut,Resolu,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0061,statut,Resolu,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0064,statut,Resolu,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0065,statut,Ouvert,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0066,statut,RESOLU,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0067,statut,en cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0068,statut,en cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0069,statut,En cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0071,statut,en cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0072,technicien,,Technicien absent pour un incident pris en charge,avertissement
+incidents.csv,I2026-0073,statut,En cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0075,statut,en cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0077,statut,Resolu,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0078,statut,Ouvert,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0079,statut,en cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0080,statut,Ouvert,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0082,statut,RESOLU,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0084,statut,Resolu,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0085,technicien,,Technicien absent pour un incident pris en charge,avertissement
+incidents.csv,I2026-0087,statut,Resolu,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0087,technicien,,Technicien absent pour un incident pris en charge,avertissement
+incidents.csv,I2026-0088,statut,en cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0089,technicien,,Technicien absent pour un incident pris en charge,avertissement
+incidents.csv,I2026-0090,statut,Resolu,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0091,statut,Resolu,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0092,statut,RESOLU,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0092,technicien,,Technicien absent pour un incident pris en charge,avertissement
+incidents.csv,I2026-0093,statut,en cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0094,statut,En cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0096,statut,en cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0098,statut,en cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0101,statut,En cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0102,statut,Resolu,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0103,statut,Ouvert,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0104,statut,en cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0105,statut,Resolu,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0106,statut,Resolu,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0107,statut,Resolu,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0108,statut,RESOLU,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0108,technicien,,Technicien absent pour un incident pris en charge,avertissement
+incidents.csv,I2026-0109,statut,Resolu,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0110,statut,Ouvert,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0111,statut,En cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0112,statut,Ouvert,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0115,technicien,,Technicien absent pour un incident pris en charge,avertissement
+incidents.csv,I2026-0116,statut,en cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0116,technicien,,Technicien absent pour un incident pris en charge,avertissement
+incidents.csv,I2026-0120,statut,en cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0121,statut,Resolu,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0123,statut,en cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0124,date_resolution,2026-07-11 09:00,Date de résolution antérieure au signalement,rejet
+incidents.csv,I2026-0125,statut,RESOLU,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0126,statut,RESOLU,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0127,statut,RESOLU,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0127,technicien,,Technicien absent pour un incident pris en charge,avertissement
+incidents.csv,I2026-0128,statut,Ouvert,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0130,statut,Resolu,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0131,statut,Ouvert,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0133,statut,Resolu,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0134,statut,Ouvert,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0135,statut,RESOLU,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0136,statut,RESOLU,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0136,technicien,,Technicien absent pour un incident pris en charge,avertissement
+incidents.csv,I2026-0137,statut,RESOLU,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0140,statut,RESOLU,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0141,statut,Ouvert,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0142,statut,Ouvert,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0143,statut,en cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0144,statut,Ouvert,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0145,statut,Ouvert,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0147,statut,en cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0148,statut,en cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0148,technicien,,Technicien absent pour un incident pris en charge,avertissement
+incidents.csv,I2026-0149,statut,RESOLU,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0150,statut,Resolu,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0151,statut,Ouvert,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0153,statut,En cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0156,statut,Ouvert,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0157,statut,en cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0158,statut,en cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0159,statut,Ouvert,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0160,statut,Ouvert,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0161,statut,Resolu,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0162,statut,en cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0163,statut,en cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0164,statut,Ouvert,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0165,statut,RESOLU,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0166,statut,en cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0168,statut,en cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0169,statut,Ouvert,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0170,statut,Resolu,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0171,statut,Ouvert,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0172,technicien,,Technicien absent pour un incident pris en charge,avertissement
+incidents.csv,I2026-0173,statut,En cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0174,statut,En cours,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0178,date_resolution,2026-07-14 19:00,Date de résolution antérieure au signalement,rejet
+incidents.csv,I2026-0179,statut,RESOLU,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0180,statut,RESOLU,Casse ou libellé de statut normalisé,normalisation
+incidents.csv,I2026-0180,technicien,,Technicien absent pour un incident pris en charge,avertissement
