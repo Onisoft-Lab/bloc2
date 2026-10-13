@@ -10,6 +10,8 @@ Plateforme de restitution des données du service de vélos en libre-service Vé
 
 `requirements.txt` reste installable avec `pip` si UV n'est pas disponible.
 
+Les commandes courantes sont dans le `Makefile`. `make` les liste. `make recharger` recrée les tables, charge les comptes et importe les CSV.
+
 ## Installation
 
 ```bash
