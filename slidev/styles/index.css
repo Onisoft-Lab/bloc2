@@ -1,0 +1,277 @@
+:root {
+  --vv-paper: #e4ecef;
+  --vv-ink: #14242c;
+  --vv-dock: #0f5c66;
+  --vv-enamel: #f4b942;
+  --vv-brick: #9c4a3c;
+  --vv-line: #c5d2d6;
+  --vv-quiet: #4d646c;
+  --vv-code-bg: #dce6e9;
+  --vv-chip: #f7fbfb;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--vv-dock) 28%, white);
+  color: var(--vv-ink);
+}
+
+.slidev-page,
+.slidev-layout {
+  background: var(--vv-paper);
+  color: var(--vv-ink);
+  font-family: "Atkinson Hyperlegible", sans-serif;
+}
+
+.slidev-layout {
+  padding: 2.1rem 2.5rem 1.7rem;
+}
+
+.slidev-layout.none {
+  padding: 0 !important;
+  height: 100%;
+}
+
+.slidev-layout:has(.totem) {
+  padding: 0 !important;
+  height: 100% !important;
+  position: relative;
+}
+
+.slidev-layout h1,
+.slidev-layout h2 {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 620;
+  letter-spacing: -0.03em;
+  color: var(--vv-ink);
+  line-height: 1.05;
+}
+
+.slidev-layout h1 {
+  font-size: 1.85rem;
+  margin: 0 0 0.35rem;
+}
+
+.slidev-layout h1::after {
+  content: "";
+  display: block;
+  width: 3.4rem;
+  height: 0.28rem;
+  margin-top: 0.55rem;
+  background: var(--vv-enamel);
+}
+
+.slidev-layout p,
+.slidev-layout li {
+  font-size: 1.05rem;
+  line-height: 1.38;
+}
+
+.slidev-layout p {
+  margin: 0 0 0.7rem;
+  max-width: 62ch;
+}
+
+.slidev-layout ul,
+.slidev-layout ol {
+  margin: 0.15rem 0 0.85rem;
+  padding-left: 1.15rem;
+}
+
+.slidev-layout li {
+  margin: 0.22rem 0;
+}
+
+.slidev-layout strong {
+  color: var(--vv-dock);
+  font-weight: 700;
+}
+
+.slidev-layout :not(pre) > code {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.9em;
+  background: var(--vv-code-bg);
+  color: var(--vv-ink);
+  padding: 0.08rem 0.28rem;
+  border-radius: 0.2rem;
+}
+
+.slidev-layout .slidev-code,
+.slidev-layout pre {
+  margin: 0.55rem 0 0.8rem;
+  font-size: 0.78rem;
+  max-width: 100%;
+}
+
+.slidev-code,
+.slidev-code code,
+.shiki,
+.shiki code {
+  white-space: pre-wrap !important;
+  word-break: break-word;
+}
+
+/* —— Title / closing —— */
+
+.totem {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 40% 1fr;
+  background: var(--vv-paper);
+}
+
+.borne {
+  background: var(--vv-dock);
+  color: #f4f8f8;
+  padding: 2.4rem 2.2rem 2.1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.borne p {
+  margin: 0;
+  font-size: 1.15rem;
+  color: color-mix(in srgb, #f4f8f8 82%, var(--vv-dock));
+  max-width: none;
+}
+
+.borne h1 {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 640;
+  font-size: 4.5rem;
+  letter-spacing: -0.045em;
+  line-height: 0.9;
+  color: #f7fbfb;
+  margin: 0.4rem 0 0.65rem;
+}
+
+.borne h1::after {
+  display: none;
+}
+
+.plan {
+  padding: 2.4rem 2.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.plan h2 {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 1.75rem;
+  margin: 0 0 0.35rem;
+}
+
+.plan h2::after {
+  content: none;
+}
+
+.filet {
+  width: 4rem;
+  height: 0.34rem;
+  background: var(--vv-enamel);
+  margin: 0 0 1.15rem;
+}
+
+.plan ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.plan li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.95rem;
+  padding: 0.72rem 0;
+  border-top: 1px solid var(--vv-line);
+  font-size: 1.32rem;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.plan li:not(:has(.duree)) {
+  display: block;
+}
+
+.plan li:last-child {
+  border-bottom: 1px solid var(--vv-line);
+}
+
+.duree {
+  flex: 0 0 1.35rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  color: var(--vv-dock);
+}
+
+/* —— Tables —— */
+
+.slidev-layout table {
+  width: auto;
+  min-width: 14rem;
+  max-width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+  margin: 0.35rem 0 0.9rem;
+}
+
+.slidev-layout table.compact {
+  font-size: 0.95rem;
+  margin: 0.2rem 0 0;
+}
+
+.slidev-layout table.compact th,
+.slidev-layout table.compact td {
+  padding-top: 0.18rem;
+  padding-bottom: 0.18rem;
+}
+
+.slidev-layout .col-bottom {
+  padding-top: 0.55rem;
+  max-width: none;
+}
+
+.slidev-layout .col-bottom p {
+  max-width: none;
+  margin: 0;
+}
+
+th {
+  text-align: left;
+  font-weight: 700;
+  border-bottom: 2px solid var(--vv-ink);
+  padding: 0.3rem 0.7rem 0.3rem 0;
+}
+
+td {
+  border-bottom: 1px solid var(--vv-line);
+  padding: 0.34rem 0.7rem 0.34rem 0;
+  vertical-align: top;
+}
+
+.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  padding-right: 0 !important;
+}
+
+.rejet {
+  color: var(--vv-brick);
+  font-weight: 700;
+}
+
+.slidev-layout.two-cols-header {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr) !important;
+  column-gap: 1.5rem !important;
+}
+
+.col-left,
+.col-right {
+  min-width: 0;
+}
+
+.slidev-vclick-target {
+  transition: none;
+}

@@ -1,0 +1,5 @@
+node_modules
+.slidev
+dist
+.preview
+veloville-soutenance.pdf
