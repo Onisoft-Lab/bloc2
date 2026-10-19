@@ -12,6 +12,12 @@ def lister(
     page: int,
     taille_page: int,
 ) -> tuple[int, list[Station]]:
+    """Stations paginées, filtrées par commune.
+
+    Entrée : session, commune optionnelle (égalité stricte), page à partir de 1, taille de page.
+    Fait : tri par station_id. Une page au-delà du total est vide. Le total reste le compte filtré.
+    Retour : total filtré et la page de stations.
+    """
     filtre = select(Station)
     compte = select(func.count()).select_from(Station)
     if commune:
@@ -25,4 +31,10 @@ def lister(
 
 
 def obtenir(session: Session, station_id: str) -> Station | None:
+    """Lit une station par sa clé.
+
+    Entrée : session et station_id.
+    Fait : lecture par clé primaire.
+    Retour : la station, ou None si elle n'existe pas.
+    """
     return session.get(Station, station_id)

@@ -19,6 +19,7 @@ def lire_incidents(
     _utilisateur: dict = Depends(utilisateur_courant),
     session: Session = Depends(get_db),
 ) -> PageIncidents:
+    """GET /incidents. Jeton requis, les deux rôles. Tri par date de signalement décroissante."""
     statut_filtre = statut.strip() if statut else None
     total, lignes = lister(session, statut_filtre or None, page, taille_page)
     return PageIncidents(
@@ -36,6 +37,12 @@ def modifier_statut(
     _exploitant: dict = Depends(exiger_exploitant),
     session: Session = Depends(get_db),
 ) -> IncidentLecture:
+    """PUT /incidents/{id}/statut, réservé à l'exploitant.
+
+    Entrée : identifiant et corps {statut: en_cours ou resolu}.
+    Fait : exiger_exploitant répond 403 avant le corps. Transition refusée : 422. Identifiant inconnu : 404.
+    Retour : l'incident mis à jour.
+    """
     try:
         incident = changer_statut(session, incident_id, corps.statut)
     except TransitionRefusee:

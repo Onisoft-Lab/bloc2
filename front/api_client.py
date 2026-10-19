@@ -28,14 +28,17 @@ class ErreurApi(Exception):
 
 
 def connecter(identifiant: str, mot_de_passe: str) -> dict:
+    """POST /auth/login. Retourne le JSON du jeton."""
     return appeler("POST", "/auth/login", json={"username": identifiant, "password": mot_de_passe})
 
 
 def obtenir(chemin: str, jeton: str, params: dict | None = None) -> dict:
+    """GET authentifié. Retourne le JSON de la route."""
     return appeler("GET", chemin, jeton=jeton, params=params)
 
 
 def modifier_statut(jeton: str, incident_id: str, statut: str) -> dict:
+    """PUT /incidents/{id}/statut. Retourne l'incident mis à jour."""
     return appeler("PUT", f"/incidents/{incident_id}/statut", jeton=jeton, json={"statut": statut})
 
 
@@ -46,6 +49,12 @@ def appeler(
     params: dict | None = None,
     json: dict | None = None,
 ) -> dict:
+    """Appel HTTP unique vers l'API.
+
+    Entrée : méthode, chemin, jeton optionnel, query, corps JSON.
+    Fait : Bearer si jeton. Timeout API_TIMEOUT_SECONDES. Réseau coupé : message français, pas de trace.
+    Retour : le JSON. Sinon ErreurApi, avec le statut HTTP quand l'API a répondu.
+    """
     entetes = {}
     if jeton:
         entetes["Authorization"] = f"Bearer {jeton}"
@@ -69,14 +78,22 @@ def appeler(
 
 
 def _url() -> str:
+    """Lit API_URL, défaut http://localhost:8000."""
     return os.environ.get("API_URL", "http://localhost:8000").rstrip("/")
 
 
 def _delai() -> float:
+    """Lit API_TIMEOUT_SECONDES, défaut 5."""
     return float(os.environ.get("API_TIMEOUT_SECONDES", "5"))
 
 
 def _message(reponse: requests.Response) -> str:
+    """Traduit le detail de l'API en français pour l'écran.
+
+    Entrée : réponse HTTP en erreur.
+    Fait : mappe les messages du contrat. Un 422 sans detail connu devient « Les paramètres envoyés sont invalides. »
+    Retour : une phrase affichable, sans trace Python.
+    """
     try:
         corps = reponse.json()
     except ValueError:

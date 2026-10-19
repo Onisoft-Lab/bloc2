@@ -16,6 +16,12 @@ def lister(
     page: int,
     taille_page: int,
 ) -> tuple[int, list[Trajet]]:
+    """Trajets paginés, filtrés par période et par station.
+
+    Entrée : session, dates optionnelles incluses, station optionnelle, page, taille de page.
+    Fait : la station retient un départ ou une arrivée. Tri par depart_horodatage puis trajet_id.
+    Retour : total filtré et la page. usager_ref est encore dans chaque ligne.
+    """
     filtre = select(Trajet)
     compte = select(func.count()).select_from(Trajet)
     jour = func.date(Trajet.depart_horodatage)

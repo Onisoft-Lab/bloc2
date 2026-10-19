@@ -19,6 +19,13 @@ _USAGER = re.compile(r"^U[0-9a-fA-F]{8}$")
 
 @dataclass(frozen=True)
 class Resultat:
+    """Issue d'une règle de fiabilisation, sans accès à la base.
+
+    Entrée : construite par la règle, à partir d'une valeur brute du CSV.
+    Fait : porte la valeur retenue, ou le motif si la valeur est écartée.
+    Retour : acceptee, valeur, motif, colonne, normalisee, avertissement.
+    """
+
     acceptee: bool
     valeur: object = None
     motif: str | None = None
@@ -28,17 +35,35 @@ class Resultat:
 
 
 class CibleNormalisee(NamedTuple):
+    """Cible d'incident après RG6 : un vélo ou une station, jamais les deux.
+
+    Entrée : produite par valider_coherence_cible.
+    Fait : fige cible, velo_id et station_id cohérents.
+    Retour : les trois champs. La référence qui ne s'applique pas vaut None.
+    """
+
     cible: str
     velo_id: str | None
     station_id: str | None
 
 
 def est_doublon(empreinte: str, empreintes_vues: set[str]) -> bool:
-    """Une ligne déjà rencontrée dans le même fichier ne s'importe qu'une fois."""
+    """Une ligne déjà rencontrée dans le même fichier ne s'importe qu'une fois.
+
+    Entrée : empreinte de la ligne brute et l'ensemble déjà vu dans ce fichier.
+    Fait : teste la présence, sans modifier l'ensemble.
+    Retour : True si la ligne est un doublon strict.
+    """
     return empreinte in empreintes_vues
 
 
 def normaliser_velo_id(valeur: str) -> Resultat:
+    """Identifiant vélo : V suivi de 4 chiffres.
+
+    Entrée : chaîne CSV, espaces ignorés.
+    Fait : passe en majuscules. Une casse différente est une normalisation.
+    Retour : Resultat accepté ou rejeté, colonne velo_id.
+    """
     brut = (valeur or "").strip()
     candidat = brut.upper()
     if not _VELO.fullmatch(candidat):
@@ -55,6 +80,12 @@ def normaliser_velo_id(valeur: str) -> Resultat:
 
 
 def valider_identifiant_station(valeur: str) -> Resultat:
+    """RG1. Identifiant station : S suivi de 3 chiffres.
+
+    Entrée : chaîne CSV, espaces ignorés.
+    Fait : passe en majuscules. Une casse différente est une normalisation.
+    Retour : Resultat accepté ou rejeté, colonne station_id.
+    """
     brut = (valeur or "").strip()
     candidat = brut.upper()
     if not _STATION.fullmatch(candidat):
@@ -71,6 +102,12 @@ def valider_identifiant_station(valeur: str) -> Resultat:
 
 
 def valider_capacite(valeur: str) -> Resultat:
+    """RG1. Capacité entière strictement positive.
+
+    Entrée : chaîne CSV.
+    Fait : convertit en entier. Refuse 0, un négatif et un texte.
+    Retour : Resultat accepté (int) ou rejeté, colonne capacite.
+    """
     try:
         capacite = int((valeur or "").strip())
     except ValueError:
@@ -81,6 +118,12 @@ def valider_capacite(valeur: str) -> Resultat:
 
 
 def valider_coordonnee(valeur: str, colonne: str) -> Resultat:
+    """Latitude ou longitude numérique.
+
+    Entrée : chaîne CSV et le nom de colonne, latitude ou longitude.
+    Fait : convertit en Decimal. Un texte est rejeté.
+    Retour : Resultat accepté (Decimal) ou rejeté, colonne demandée.
+    """
     try:
         nombre = Decimal((valeur or "").strip())
     except InvalidOperation:
@@ -89,6 +132,12 @@ def valider_coordonnee(valeur: str, colonne: str) -> Resultat:
 
 
 def valider_texte_obligatoire(valeur: str, colonne: str) -> Resultat:
+    """Champ texte obligatoire, après retrait des espaces.
+
+    Entrée : chaîne CSV et le nom de colonne.
+    Fait : rejette une valeur vide.
+    Retour : Resultat accepté (texte) ou rejeté, colonne demandée.
+    """
     brut = (valeur or "").strip()
     if not brut:
         return Resultat(False, motif="Valeur obligatoire absente", colonne=colonne)
@@ -96,10 +145,22 @@ def valider_texte_obligatoire(valeur: str, colonne: str) -> Resultat:
 
 
 def normaliser_date(valeur: str) -> Resultat:
+    """Date de mise en service d'une station.
+
+    Entrée : chaîne CSV.
+    Fait : accepte AAAA-MM-JJ. JJ/MM/AAAA est normalisé.
+    Retour : Resultat accepté (date) ou rejeté, colonne date_mise_en_service.
+    """
     return _parser_date(valeur, (("%Y-%m-%d", False), ("%d/%m/%Y", True)), "date_mise_en_service")
 
 
 def normaliser_horodatage_trajet(valeur: str) -> Resultat:
+    """Horodatage de départ d'un trajet, obligatoire.
+
+    Entrée : chaîne CSV.
+    Fait : accepte AAAA-MM-JJ HH:MM:SS. Les formats jour/mois ou sans secondes sont normalisés.
+    Retour : Resultat accepté (datetime) ou rejeté, colonne depart_horodatage.
+    """
     return _parser_horodatage(
         valeur,
         (
@@ -113,6 +174,12 @@ def normaliser_horodatage_trajet(valeur: str) -> Resultat:
 
 
 def normaliser_horodatage_incident(valeur: str) -> Resultat:
+    """Horodatage de signalement, obligatoire.
+
+    Entrée : chaîne CSV.
+    Fait : accepte AAAA-MM-JJ HH:MM. Les autres formats reconnus sont normalisés.
+    Retour : Resultat accepté (datetime) ou rejeté, colonne date_signalement.
+    """
     return _parser_horodatage(
         valeur,
         (
@@ -126,7 +193,12 @@ def normaliser_horodatage_incident(valeur: str) -> Resultat:
 
 
 def parser_horodatage_optionnel(valeur: str, colonne: str) -> Resultat:
-    """Horodatage facultatif : vide accepté, format incorrect rejeté."""
+    """Horodatage facultatif.
+
+    Entrée : chaîne CSV et le nom de colonne.
+    Fait : vide accepté. Un format incorrect est rejeté. JJ/MM/AAAA est normalisé.
+    Retour : Resultat accepté (datetime ou None) ou rejeté.
+    """
     if not (valeur or "").strip():
         return Resultat(True, valeur=None, colonne=colonne)
     resultat = _parser_horodatage(
@@ -143,6 +215,12 @@ def parser_horodatage_optionnel(valeur: str, colonne: str) -> Resultat:
 
 
 def valider_duree_secondes(valeur: str) -> Resultat:
+    """RG4. Durée entière strictement positive, en secondes.
+
+    Entrée : chaîne CSV.
+    Fait : refuse 0, un négatif et un texte.
+    Retour : Resultat accepté (int) ou rejeté, colonne duree_secondes.
+    """
     try:
         duree = int((valeur or "").strip())
     except ValueError:
@@ -153,6 +231,12 @@ def valider_duree_secondes(valeur: str) -> Resultat:
 
 
 def valider_station_depart(station_id: str, stations: set[str]) -> Resultat:
+    """RG2. La station de départ existe dans le référentiel retenu.
+
+    Entrée : identifiant brut et l'ensemble des stations déjà importables.
+    Fait : vide ou absent du référentiel, rejeté.
+    Retour : Resultat accepté ou rejeté, colonne station_depart.
+    """
     identifiant = (station_id or "").strip()
     if not identifiant or identifiant not in stations:
         return Resultat(False, motif="Station de départ inconnue", colonne="station_depart")
@@ -160,6 +244,12 @@ def valider_station_depart(station_id: str, stations: set[str]) -> Resultat:
 
 
 def valider_station_arrivee(station_id: str, stations: set[str]) -> Resultat:
+    """RG3. Arrivée facultative, sinon station du référentiel.
+
+    Entrée : identifiant brut et l'ensemble des stations déjà retenues.
+    Fait : vide accepté (valeur None) ; inconnu, dont S999, rejeté.
+    Retour : Resultat accepté ou rejeté, colonne station_arrivee.
+    """
     identifiant = (station_id or "").strip()
     if not identifiant:
         return Resultat(True, valeur=None, colonne="station_arrivee")
@@ -169,6 +259,12 @@ def valider_station_arrivee(station_id: str, stations: set[str]) -> Resultat:
 
 
 def normaliser_type_usager(valeur: str) -> Resultat:
+    """Type d'usager : abonne ou occasionnel.
+
+    Entrée : chaîne CSV.
+    Fait : passe en minuscules. Une casse différente est une normalisation.
+    Retour : Resultat accepté ou rejeté, colonne type_usager.
+    """
     brut = (valeur or "").strip()
     cle = brut.lower()
     if cle not in TYPES_USAGER:
@@ -185,6 +281,12 @@ def normaliser_type_usager(valeur: str) -> Resultat:
 
 
 def valider_usager_ref(type_usager: str, usager_ref: str) -> Resultat:
+    """RG5. Pseudonyme selon le type d'usager.
+
+    Entrée : type déjà normalisé et usager_ref brut.
+    Fait : occasionnel avec pseudonyme rejeté. Abonné sans pseudonyme accepté avec avertissement. Format attendu : U et 8 hexadécimaux.
+    Retour : Resultat accepté (référence ou None) ou rejeté, colonne usager_ref.
+    """
     reference = (usager_ref or "").strip()
     if type_usager == "occasionnel":
         if reference:
@@ -208,6 +310,12 @@ def valider_usager_ref(type_usager: str, usager_ref: str) -> Resultat:
 
 
 def normaliser_statut(valeur: str) -> Resultat:
+    """RG7. Statut ouvert, en_cours ou resolu.
+
+    Entrée : chaîne CSV.
+    Fait : minuscules, espaces remplacés par des soulignés. « En cours » devient en_cours.
+    Retour : Resultat accepté ou rejeté, colonne statut.
+    """
     brut = (valeur or "").strip()
     cle = brut.lower().replace(" ", "_")
     if cle not in STATUTS:
@@ -229,6 +337,12 @@ def valider_coherence_cible(
     station_id: str,
     stations: set[str],
 ) -> Resultat:
+    """RG6. Un incident vise un vélo ou une station, jamais les deux.
+
+    Entrée : cible, velo_id et station_id bruts, et les stations retenues.
+    Fait : vélo exige un vélo valide et aucune station. Station exige une station du référentiel et aucun vélo.
+    Retour : Resultat dont la valeur est une CibleNormalisee, ou un rejet.
+    """
     brut = (cible or "").strip()
     nature = brut.lower()
     velo = (velo_id or "").strip()
@@ -276,6 +390,12 @@ def valider_coherence_dates(
     signalement: datetime,
     resolution: datetime | None,
 ) -> Resultat:
+    """RG8. La date de résolution suit le statut.
+
+    Entrée : statut normalisé, signalement, résolution éventuelle.
+    Fait : résolu exige une résolution postérieure ou égale au signalement. Un autre statut refuse une résolution renseignée.
+    Retour : Resultat accepté (datetime ou None) ou rejeté, colonne date_resolution.
+    """
     if statut == "resolu":
         if resolution is None:
             return Resultat(
@@ -300,6 +420,12 @@ def valider_coherence_dates(
 
 
 def avertir_technicien_absent(statut: str, technicien: str) -> Resultat:
+    """RG8. Technicien attendu dès la prise en charge, sans rejet.
+
+    Entrée : statut normalisé et nom brut.
+    Fait : en_cours ou resolu sans nom reste accepté, avec avertissement.
+    Retour : Resultat toujours accepté. La valeur vaut None si le nom est vide.
+    """
     nom = (technicien or "").strip()
     if statut in {"en_cours", "resolu"} and not nom:
         return Resultat(
@@ -313,6 +439,12 @@ def avertir_technicien_absent(statut: str, technicien: str) -> Resultat:
 
 
 def _parser_horodatage(valeur: str, formats: tuple[tuple[str, bool], ...], colonne: str) -> Resultat:
+    """Parse un horodatage obligatoire selon une liste de formats.
+
+    Entrée : chaîne, formats (motif strptime, True si ce motif est une normalisation), colonne.
+    Fait : essaie les formats dans l'ordre. Vide ou aucun format reconnu : rejet.
+    Retour : Resultat accepté (datetime) ou rejeté.
+    """
     brut = (valeur or "").strip()
     if not brut:
         return Resultat(False, motif="Horodatage absent", colonne=colonne)
@@ -334,6 +466,12 @@ def _parser_horodatage(valeur: str, formats: tuple[tuple[str, bool], ...], colon
 
 
 def _parser_date(valeur: str, formats: tuple[tuple[str, bool], ...], colonne: str) -> Resultat:
+    """Parse une date obligatoire selon une liste de formats.
+
+    Entrée : chaîne, formats (motif strptime, True si ce motif est une normalisation), colonne.
+    Fait : essaie les formats dans l'ordre. Vide ou aucun format reconnu : rejet.
+    Retour : Resultat accepté (date) ou rejeté.
+    """
     brut = (valeur or "").strip()
     if not brut:
         return Resultat(False, motif="Date absente", colonne=colonne)

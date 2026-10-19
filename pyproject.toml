@@ -1,0 +1,10 @@
+[project]
+name = "bloc2"
+version = "0.1.0"
+description = "Plateforme de restitution des données VéloVille"
+readme = "README.md"
+authors = [
+    { name = "Onivoid", email = "onivoid.tv@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = []

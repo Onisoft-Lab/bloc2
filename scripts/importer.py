@@ -82,6 +82,13 @@ COLONNES_INCIDENT = [
 
 @dataclass
 class Bilan:
+    """Comptage d'un CSV : lues = retenues + rejetées + doublons.
+
+    Entrée : nom de fichier, compteurs à zéro.
+    Fait : chaque ligne incrémente un seul compteur.
+    Retour : le bilan affiché en fin d'import. Un écart arrête le script.
+    """
+
     fichier: str
     lues: int = 0
     retenues: int = 0
@@ -90,6 +97,12 @@ class Bilan:
 
 
 def main() -> None:
+    """Enchaîne lecture, fiabilisation, insertion et journal.
+
+    Entrée : --dossier, défaut data.
+    Fait : stations, puis trajets et incidents. Vérifie l'équation des comptages avant d'écrire.
+    Retour : rien. Affiche les bilans et les comptes en base. Code non nul si le dossier ou un CSV manque.
+    """
     arguments = argparse.ArgumentParser(description="Importe et fiabilise les exports VéloVille")
     arguments.add_argument("--dossier", default="data", help="Dossier contenant les trois CSV")
     args = arguments.parse_args()
@@ -136,6 +149,12 @@ def main() -> None:
 
 
 def lire_csv(chemin: Path, colonnes: list[str]) -> list[dict[str, str]]:
+    """Lit un export en chaînes, sans transformer les vides en NaN.
+
+    Entrée : chemin et la liste de colonnes attendues.
+    Fait : pandas dtype=str, keep_default_na=False. Colonne manquante : arrêt.
+    Retour : une liste de dictionnaires, une entrée par ligne.
+    """
     if not chemin.is_file():
         raise SystemExit(f"Export introuvable : {chemin}")
     table = pd.read_csv(chemin, dtype=str, keep_default_na=False, encoding="utf-8")
@@ -146,6 +165,12 @@ def lire_csv(chemin: Path, colonnes: list[str]) -> list[dict[str, str]]:
 
 
 def traiter_stations(lignes: list[dict[str, str]]) -> tuple[list[dict], list[dict], Bilan]:
+    """Fiabilise stations.csv avant tout le reste.
+
+    Entrée : lignes brutes du CSV.
+    Fait : doublon d'abord, puis RG1 (identifiant, capacité, textes, coordonnées, date).
+    Retour : lignes retenues, journal, bilan.
+    """
     bilan = Bilan("stations.csv", lues=len(lignes))
     journal: list[dict] = []
     retenues: list[dict] = []
@@ -190,6 +215,12 @@ def traiter_trajets(
     lignes: list[dict[str, str]],
     stations: set[str],
 ) -> tuple[list[dict], list[dict], Bilan]:
+    """Fiabilise trajets.csv contre les stations déjà retenues.
+
+    Entrée : lignes brutes et l'ensemble des station_id retenues.
+    Fait : doublon d'abord, puis vélo, horaire, durée, départ, arrivée, type, usager_ref.
+    Retour : lignes retenues, journal, bilan.
+    """
     bilan = Bilan("trajets.csv", lues=len(lignes))
     journal: list[dict] = []
     retenues: list[dict] = []
@@ -240,6 +271,12 @@ def traiter_incidents(
     lignes: list[dict[str, str]],
     stations: set[str],
 ) -> tuple[list[dict], list[dict], Bilan]:
+    """Fiabilise incidents.csv.
+
+    Entrée : lignes brutes et l'ensemble des station_id retenues.
+    Fait : doublon d'abord, puis signalement, statut, résolution, type, cible, dates, technicien.
+    Retour : lignes retenues, journal, bilan. Le technicien absent reste un avertissement.
+    """
     bilan = Bilan("incidents.csv", lues=len(lignes))
     journal: list[dict] = []
     retenues: list[dict] = []
@@ -301,6 +338,12 @@ def _ecarter_doublon(
     journal: list[dict],
     bilan: Bilan,
 ) -> bool:
+    """Écarte une ligne déjà vue, avant les règles métier.
+
+    Entrée : ligne brute, colonnes, empreintes et identifiants déjà traités.
+    Fait : ligne identique = doublon. Même identifiant et contenu différent = rejet.
+    Retour : True si la ligne est écartée. L'appelant ne lance pas les contrôles.
+    """
     signature = "\x1f".join(ligne[colonne] for colonne in colonnes)
     if est_doublon(signature, empreintes):
         journal.append(
@@ -341,6 +384,12 @@ def _controler(
     fichier: str,
     identifiant: str,
 ) -> bool:
+    """Applique une série de Resultat et s'arrête au premier rejet.
+
+    Entrée : couples (Resultat, valeur brute), notes, journal, bilan, fichier, identifiant.
+    Fait : un rejet incrémente le bilan et une ligne de journal. Une acceptation note normalisation ou avertissement.
+    Retour : False si un contrôle a rejeté la ligne.
+    """
     for resultat, valeur_brute in controles:
         if not resultat.acceptee:
             journal.append(
@@ -353,6 +402,12 @@ def _controler(
 
 
 def _noter(resultat: Resultat, valeur_brute: str, notes: list[dict], fichier: str, identifiant: str) -> None:
+    """Ajoute au journal une normalisation ou un avertissement, sans changer le sort de la ligne.
+
+    Entrée : Resultat accepté, valeur brute, liste de notes du fichier.
+    Fait : normalisee et avertissement produisent chacun une ligne, décision distincte.
+    Retour : rien. Les notes sont écrites avec la ligne retenue.
+    """
     if resultat.normalisee and resultat.motif:
         notes.append(_entree(fichier, identifiant, resultat.colonne, valeur_brute, resultat.motif, "normalisation"))
     if resultat.avertissement and resultat.motif:
@@ -367,6 +422,12 @@ def _entree(
     motif: str | None,
     decision: str,
 ) -> dict[str, str]:
+    """Construit une ligne du journal d'import.
+
+    Entrée : fichier, identifiant, colonne, valeur, motif, décision.
+    Fait : None devient une chaîne vide.
+    Retour : dict aux colonnes fichier, identifiant, colonne, valeur, motif, decision.
+    """
     return {
         "fichier": fichier,
         "identifiant": identifiant,
@@ -378,6 +439,12 @@ def _entree(
 
 
 def inserer(session, modele, lignes: list[dict], cle: str) -> None:
+    """Insère les lignes retenues sans doublon en base.
+
+    Entrée : session, modèle, lignes, nom de la clé primaire.
+    Fait : INSERT ... ON CONFLICT DO NOTHING. Une seconde exécution ne change pas les volumes.
+    Retour : rien. Le commit est fait par main.
+    """
     if not lignes:
         return
     requete = inserer_pg(modele.__table__).values(lignes).on_conflict_do_nothing(index_elements=[cle])
@@ -385,6 +452,12 @@ def inserer(session, modele, lignes: list[dict], cle: str) -> None:
 
 
 def ecrire_journal(lignes: list[dict], chemin: Path) -> None:
+    """Réécrit le journal CSV des rejets, normalisations, doublons et avertissements.
+
+    Entrée : lignes de journal et chemin, docs/journal-import.csv.
+    Fait : écrase le fichier précédent, en-tête inclus.
+    Retour : rien.
+    """
     chemin.parent.mkdir(parents=True, exist_ok=True)
     with chemin.open("w", encoding="utf-8", newline="") as fichier:
         redacteur = csv.DictWriter(fichier, fieldnames=COLONNES_JOURNAL)

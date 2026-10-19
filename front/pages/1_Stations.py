@@ -28,6 +28,12 @@ COLONNES = {
 
 @st.cache_data(ttl=3600)
 def lister_communes(jeton: str) -> list[str]:
+    """Communes distinctes, mises en cache une heure.
+
+    Entrée : jeton Bearer. La clé de cache inclut le jeton.
+    Fait : pagine GET /stations par 100 et déduplique les communes.
+    Retour : liste triée. st.cache_data(ttl=3600).
+    """
     communes: set[str] = set()
     page = 1
     while True:

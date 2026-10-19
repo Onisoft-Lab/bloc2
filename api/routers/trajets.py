@@ -23,6 +23,7 @@ def lire_trajets(
     _utilisateur: dict = Depends(utilisateur_courant),
     session: Session = Depends(get_db),
 ) -> PageTrajets:
+    """GET /trajets. Jeton requis. Période inclusive, station = départ ou arrivée."""
     station_filtree = station.strip() if station else None
     total, lignes = lister(session, date_debut, date_fin, station_filtree or None, page, taille_page)
     return PageTrajets(

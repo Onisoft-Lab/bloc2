@@ -76,6 +76,8 @@ class PageIncidents(BaseModel):
 
 
 class MajStatut(BaseModel):
+    """Corps du PUT statut : en_cours ou resolu, jamais ouvert."""
+
     statut: Literal["en_cours", "resolu"]
 
 

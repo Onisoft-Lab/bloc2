@@ -11,6 +11,8 @@ class Base(DeclarativeBase):
 
 
 class Station(Base):
+    """Table station, clé station_id."""
+
     __tablename__ = "station"
 
     station_id: Mapped[str] = mapped_column(String(10), primary_key=True)
@@ -23,6 +25,8 @@ class Station(Base):
 
 
 class Trajet(Base):
+    """Table trajet, clé trajet_id. usager_ref est renvoyé par l'API."""
+
     __tablename__ = "trajet"
 
     trajet_id: Mapped[str] = mapped_column(String(12), primary_key=True)
@@ -36,6 +40,8 @@ class Trajet(Base):
 
 
 class Incident(Base):
+    """Table incident, clé incident_id."""
+
     __tablename__ = "incident"
 
     incident_id: Mapped[str] = mapped_column(String(12), primary_key=True)
@@ -50,6 +56,8 @@ class Incident(Base):
 
 
 class Utilisateur(Base):
+    """Table utilisateur, clé id_utilisateur. Mot de passe stocké en bcrypt."""
+
     __tablename__ = "utilisateur"
 
     id_utilisateur: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)

@@ -19,6 +19,7 @@ def lire_stations(
     _utilisateur: dict = Depends(utilisateur_courant),
     session: Session = Depends(get_db),
 ) -> PageStations:
+    """GET /stations. Jeton requis. Page ou taille hors bornes : 422 avant l'appel."""
     commune_filtree = commune.strip() if commune else None
     total, lignes = lister(session, commune_filtree or None, page, taille_page)
     return PageStations(
@@ -35,6 +36,7 @@ def lire_station(
     _utilisateur: dict = Depends(utilisateur_courant),
     session: Session = Depends(get_db),
 ) -> StationLecture:
+    """GET /stations/{id}. Jeton requis. Inconnue : 404 « Station introuvable »."""
     station = obtenir(session, station_id)
     if station is None:
         raise HTTPException(status_code=404, detail="Station introuvable")

@@ -12,6 +12,7 @@ router = APIRouter(tags=["auth"])
 
 @router.post("/auth/login", response_model=Jeton)
 def login(corps: DemandeConnexion, session: Session = Depends(get_db)) -> Jeton:
+    """POST /auth/login. Échec : 401 « Identifiants invalides », sans dire si le compte existe."""
     utilisateur = authentifier(session, corps.username, corps.password)
     if utilisateur is None:
         raise HTTPException(status_code=401, detail="Identifiants invalides")

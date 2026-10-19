@@ -21,6 +21,12 @@ class TransitionRefusee(Exception):
 
 
 def transition_autorisee(statut_actuel: str, nouveau_statut: str) -> bool:
+    """RG7. Indique si le passage de statut est permis.
+
+    Entrée : statut actuel et statut demandé.
+    Fait : autorise ouvert vers en_cours, ouvert vers resolu, en_cours vers resolu.
+    Retour : True si le couple est dans TRANSITIONS_AUTORISEES.
+    """
     return (statut_actuel, nouveau_statut) in TRANSITIONS_AUTORISEES
 
 
@@ -30,6 +36,12 @@ def lister(
     page: int,
     taille_page: int,
 ) -> tuple[int, list[Incident]]:
+    """Incidents paginés, filtrés par statut.
+
+    Entrée : session, statut optionnel, page à partir de 1, taille de page.
+    Fait : filtre égal au statut. Tri par date_signalement décroissante, puis incident_id.
+    Retour : total filtré et la page d'incidents.
+    """
     filtre = select(Incident)
     compte = select(func.count()).select_from(Incident)
     if statut:
@@ -45,6 +57,12 @@ def lister(
 
 
 def changer_statut(session: Session, incident_id: str, nouveau_statut: str) -> Incident | None:
+    """Applique une transition et enregistre.
+
+    Entrée : session, identifiant, nouveau statut (en_cours ou resolu).
+    Fait : identifiant inconnu renvoyé tel quel. Transition refusée : lève TransitionRefusee. Le passage à resolu date la résolution si elle est vide.
+    Retour : l'incident à jour, ou None si l'identifiant n'existe pas.
+    """
     incident = session.get(Incident, incident_id)
     if incident is None:
         return None

@@ -20,6 +20,7 @@ def lire_activite(
     _utilisateur: dict = Depends(utilisateur_courant),
     session: Session = Depends(get_db),
 ) -> dict:
+    """GET /indicateurs/activite-par-jour. Jeton requis. Délègue l'agrégat SQL."""
     return {"donnees": activite_par_jour(session, date_debut, date_fin)}
 
 
@@ -29,6 +30,7 @@ def lire_stations_actives(
     _utilisateur: dict = Depends(utilisateur_courant),
     session: Session = Depends(get_db),
 ) -> dict:
+    """GET /indicateurs/stations-actives. Jeton requis. limite >= 1, défaut 10."""
     return {"donnees": stations_actives(session, limite)}
 
 
@@ -37,4 +39,5 @@ def lire_incidents_par_statut(
     _utilisateur: dict = Depends(utilisateur_courant),
     session: Session = Depends(get_db),
 ) -> dict:
+    """GET /indicateurs/incidents-par-statut. Jeton requis. Délègue l'agrégat SQL."""
     return incidents_par_statut(session)

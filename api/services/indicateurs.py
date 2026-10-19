@@ -14,6 +14,12 @@ def activite_par_jour(
     date_debut: date | None,
     date_fin: date | None,
 ) -> list[dict]:
+    """Nombre de trajets par jour de départ.
+
+    Entrée : session, bornes optionnelles AAAA-MM-JJ, incluses. Sans borne, toute la période en base.
+    Fait : GROUP BY SQL sur la date de depart_horodatage. Un jour sans trajet n'apparaît pas.
+    Retour : liste de {jour, nb_trajets}, triée par jour croissant.
+    """
     jour = func.date(Trajet.depart_horodatage)
     requete = select(jour.label("jour"), func.count().label("nb_trajets"))
     if date_debut is not None:
@@ -30,6 +36,12 @@ def activite_par_jour(
 
 
 def stations_actives(session: Session, limite: int) -> list[dict]:
+    """Stations ayant le plus de mouvements.
+
+    Entrée : session et nombre maximum de stations.
+    Fait : nb_departs + nb_arrivees en SQL. Une arrivée vide ne compte pour aucune station.
+    Retour : liste de {station_id, nom, nb_departs, nb_arrivees}, mouvements décroissants puis station_id.
+    """
     departs = (
         select(Trajet.station_depart.label("station_id"), func.count().label("nb_departs"))
         .group_by(Trajet.station_depart)
@@ -69,6 +81,12 @@ def stations_actives(session: Session, limite: int) -> list[dict]:
 
 
 def incidents_par_statut(session: Session) -> dict:
+    """Répartition des incidents et délai moyen de résolution.
+
+    Entrée : session.
+    Fait : un compte par statut présent. Moyenne des résolus dont la date de résolution est renseignée.
+    Retour : {donnees, delai_moyen_resolution_heures}. Le délai vaut None s'il n'y a aucun résolu daté.
+    """
     comptes = session.execute(
         select(Incident.statut, func.count().label("nb_incidents"))
         .group_by(Incident.statut)
@@ -88,6 +106,12 @@ def incidents_par_statut(session: Session) -> dict:
 
 
 def _arrondir_heure(moyenne: object) -> float | None:
+    """Arrondit le délai moyen à une décimale.
+
+    Entrée : moyenne SQL en heures, ou None.
+    Fait : quantize au dixième, arrondi half-up. None reste None.
+    Retour : float à une décimale, ou None.
+    """
     if moyenne is None:
         return None
     arrondi = Decimal(str(moyenne)).quantize(Decimal("0.1"), rounding=ROUND_HALF_UP)

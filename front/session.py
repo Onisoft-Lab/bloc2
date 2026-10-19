@@ -6,10 +6,22 @@ _CLES = ("access_token", "role", "username")
 
 
 def est_connecte() -> bool:
+    """Indique si un jeton est en session.
+
+    Entrée : st.session_state.
+    Fait : teste la présence de access_token.
+    Retour : True si l'utilisateur est connecté. Le jeton n'est jamais affiché.
+    """
     return bool(st.session_state.get("access_token"))
 
 
 def afficher_session(*, revenir_accueil: bool) -> None:
+    """Affiche l'identifiant et le rôle dans la barre latérale.
+
+    Entrée : revenir_accueil, vrai sur les pages, faux sur l'accueil.
+    Fait : montre username et role. La déconnexion retire le jeton. Le jeton reste invisible.
+    Retour : rien.
+    """
     if not est_connecte():
         return
     st.sidebar.markdown(f"**Connecté :** {st.session_state['username']}")
@@ -22,11 +34,23 @@ def afficher_session(*, revenir_accueil: bool) -> None:
 
 
 def deconnecter() -> None:
+    """Retire le jeton, le rôle et l'identifiant de la session.
+
+    Entrée : aucune.
+    Fait : retire access_token, role et username.
+    Retour : rien.
+    """
     for cle in _CLES:
         st.session_state.pop(cle, None)
 
 
 def exiger_connexion() -> None:
+    """Bloque une page si personne n'est connecté.
+
+    Entrée : la session courante.
+    Fait : affiche la barre. Sinon un message, un lien vers la connexion, puis stop.
+    Retour : rien si la session est ouverte.
+    """
     afficher_session(revenir_accueil=True)
     if est_connecte():
         return

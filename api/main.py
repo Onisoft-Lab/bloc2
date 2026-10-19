@@ -17,4 +17,10 @@ app.include_router(indicateurs.router)
 
 @app.get("/sante")
 def sante() -> dict[str, str]:
+    """GET /sante, sans jeton.
+
+    Entrée : aucune.
+    Fait : ne touche ni la base ni l'authentification.
+    Retour : {"statut": "ok"}.
+    """
     return {"statut": "ok"}
